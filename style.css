@@ -244,7 +244,7 @@ body {
     text-align: right;
 }
 
-/* تصميم المثلثات الذهبية الاحترافي (Formula Triangles) */
+/* تصميم المثلثات الذهبية واضحة تماماً وبدون أي رموز معقدة */
 .formulas-section {
     margin-top: 30px;
     background-color: var(--card-bg);
@@ -261,7 +261,7 @@ body {
 
 .triangles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
 }
 
@@ -271,7 +271,6 @@ body {
     border-radius: 12px;
     padding: 18px;
     text-align: center;
-    position: relative;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
@@ -296,8 +295,8 @@ body {
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 8px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 4px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 6px;
 }
 
 .triangle-bottom {
