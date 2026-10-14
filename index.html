@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الفيزياء والكيمياء الذكية | الثانوية العامة</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">⚡ ثانوية <span>AI Hub</span></div>
+        <nav>
+            <a href="#home" class="active">الرئيسية</a>
+            <a href="#linker">مساعد الربط الذكي</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>إحترف الفيزياء والكيمياء بالذكاء الاصطناعي</h1>
+        <p>لا تحظى بالحفظ فقط، افهم الفكرة واربط بين الدروس والباب والأفكار المعقدة في ثوانٍ معدودة.</p>
+    </section>
+
+    <section id="linker" class="ai-linker-section">
+        <div class="container">
+            <h2>🧠 مساعد الربط الذكي بين الدروس</h2>
+            <p class="section-desc">اختر درسين أو مفاهيم من الفيزياء أو الكيمياء، ودع الذكاء الاصطناعي يربط لك بينهم في الامتحان!</p>
+
+            <div class="linker-card">
+                <div class="input-group">
+                    <label for="lesson1">المفهوم أو الدرس الأول:</label>
+                    <select id="lesson1">
+                        <option value="chem_org">الكيمياء العضوية (الهيدروكربونات)</option>
+                        <option value="chem_redox">الأكسدة والاختزال (الباب الرابع)</option>
+                        <option value="phys_ohm">قانون أوم وقوانين كيرشوف</option>
+                        <option value="phys_mod">الفيزياء الحديثة (أطياف الذرة)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="lesson2">المفهوم أو الدرس الثاني:</label>
+                    <select id="lesson2">
+                        <option value="chem_redox">الأكسدة والاختزال (الباب الرابع)</option>
+                        <option value="chem_org">الكيمياء العضوية (الهيدروكربونات)</option>
+                        <option value="phys_mag">الحث الكهرومغناطيسي</option>
+                        <option value="phys_mod">الفيزياء الحديثة (أطياف الذرة)</option>
+                    </select>
+                </div>
+
+                <button id="connectBtn" class="primary-btn">اربط المفاهيم بالذكاء الاصطناعي 🚀</button>
+
+                <div id="aiResult" class="result-box hidden">
+                    <h3>نتيجة التحليل والربط:</h3>
+                    <div id="resultContent">جاري التفكير وتحليل الأسئلة...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>صُمم خصيصاً لمساعدة طلاب الثانوية العامة في مصر 🇪🇬 | مشروع مفتوح المصدر على GitHub</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
