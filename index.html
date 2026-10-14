@@ -14,49 +14,81 @@
         <nav>
             <a href="#home" class="active">الرئيسية</a>
             <a href="#linker">مساعد الربط الذكي</a>
+            <a href="#resources">القوانين والأسئلة</a>
         </nav>
     </header>
 
     <section id="home" class="hero">
         <h1>إحترف الفيزياء والكيمياء بالذكاء الاصطناعي</h1>
-        <p>لا تحظى بالحفظ فقط، افهم الفكرة واربط بين الدروس والباب والأفكار المعقدة في ثوانٍ معدودة.</p>
+        <p>فهم عميق، ربط بين فروع المادة، وتدريب حقيقي على أسئلة الامتحانات.</p>
     </section>
 
-    <section id="linker" class="ai-linker-section">
-        <div class="container">
-            <h2>🧠 مساعد الربط الذكي بين الدروس</h2>
-            <p class="section-desc">اختر درسين أو مفاهيم من الفيزياء أو الكيمياء، ودع الذكاء الاصطناعي يربط لك بينهم في الامتحان!</p>
+    <!-- الهيكل الرئيسي للموقع: محتوى أساسي + خانة جانبية (Sidebar) -->
+    <div class="main-layout container">
+        
+        <!-- المحتوى الرئيسي (أداة الربط الذكي) -->
+        <main class="content-area">
+            <section id="linker" class="ai-linker-section">
+                <h2>🧠 مساعد الربط الذكي بين فروع المنهج</h2>
+                <p class="section-desc">اختر المادة، ثم حدد فرعين للربط بينهما ومعرفة أفكار الامتحانات.</p>
 
-            <div class="linker-card">
-                <div class="input-group">
-                    <label for="lesson1">المفهوم أو الدرس الأول:</label>
-                    <select id="lesson1">
-                        <option value="chem_org">الكيمياء العضوية (الهيدروكربونات)</option>
-                        <option value="chem_redox">الأكسدة والاختزال (الباب الرابع)</option>
-                        <option value="phys_ohm">قانون أوم وقوانين كيرشوف</option>
-                        <option value="phys_mod">الفيزياء الحديثة (أطياف الذرة)</option>
-                    </select>
+                <div class="linker-card">
+                    <!-- اختيار المادة -->
+                    <div class="input-group">
+                        <label for="subjectSelect">اختر المادة:</label>
+                        <select id="subjectSelect">
+                            <option value="chem">الكيمياء (العضوية، الكهربية، الاتزان...)</option>
+                            <option value="phys">الفيزياء (الكهربية، الحديثة، الحث...)</option>
+                        </select>
+                    </div>
+
+                    <!-- الفرع الأول -->
+                    <div class="input-group">
+                        <label for="branch1">الفرع أو الباب الأول:</label>
+                        <select id="branch1">
+                            <!-- سيتم تحديث الخيارات تلقائياً بالجافاسكريبت -->
+                        </select>
+                    </div>
+
+                    <!-- الفرع الثاني -->
+                    <div class="input-group">
+                        <label for="branch2">الفرع أو الباب الثاني المراد ربطه:</label>
+                        <select id="branch2">
+                            <!-- سيتم تحديث الخيارات تلقائياً بالجافاسكريبت -->
+                        </select>
+                    </div>
+
+                    <button id="connectBtn" class="primary-btn">حلل الربط واعرض الأسئلة 🚀</button>
+
+                    <!-- صندوق النتيجة -->
+                    <div id="aiResult" class="result-box hidden">
+                        <h3>تحليل الربط وأسئلة التدريب:</h3>
+                        <div id="resultContent">جاري تحليل العلاقات...</div>
+                    </div>
                 </div>
+            </section>
+        </main>
 
-                <div class="input-group">
-                    <label for="lesson2">المفهوم أو الدرس الثاني:</label>
-                    <select id="lesson2">
-                        <option value="chem_redox">الأكسدة والاختزال (الباب الرابع)</option>
-                        <option value="chem_org">الكيمياء العضوية (الهيدروكربونات)</option>
-                        <option value="phys_mag">الحث الكهرومغناطيسي</option>
-                        <option value="phys_mod">الفيزياء الحديثة (أطياف الذرة)</option>
-                    </select>
-                </div>
-
-                <button id="connectBtn" class="primary-btn">اربط المفاهيم بالذكاء الاصطناعي 🚀</button>
-
-                <div id="aiResult" class="result-box hidden">
-                    <h3>نتيجة التحليل والربط:</h3>
-                    <div id="resultContent">جاري التفكير وتحليل الأسئلة...</div>
-                </div>
+        <!-- القائمة الجانبية (Sidebar) للقوانين والأسئلة السابقة -->
+        <aside id="resources" class="sidebar">
+            <div class="sidebar-card">
+                <h3>📌 ركن القوانين السريعة</h3>
+                <ul class="resource-list" id="lawsList">
+                    <li><a href="#" onclick="showLaw('chem')">أهم قوانين الكيمياء (الاتزان والكهربية)</a></li>
+                    <li><a href="#" onclick="showLaw('phys')">أهم قوانين الفيزياء (كيرشوف والحث)</a></li>
+                </ul>
             </div>
-        </div>
-    </section>
+
+            <div class="sidebar-card">
+                <h3>📚 أسئلة امتحانات سابقة</h3>
+                <ul class="resource-list" id="examsList">
+                    <li><a href="#" onclick="showExam('chem')">مسألة متطايرة (امتحان 2023)</a></li>
+                    <li><a href="#" onclick="showExam('phys')">دائرة كيرشوف مع توجيه مغناطيسي (2024)</a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
 
     <footer>
         <p>صُمم خصيصاً لمساعدة طلاب الثانوية العامة في مصر 🇪🇬 | مشروع مفتوح المصدر على GitHub</p>
