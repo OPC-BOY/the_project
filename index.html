@@ -3,91 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الفيزياء والكيمياء الذكية | الثانوية العامة</title>
+    <title>ثانوية AI Hub | منصة الفيزياء والكيمياء</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-mode">
 
+    <!-- شريط التنقل العلوي -->
     <header class="navbar">
         <div class="logo">⚡ ثانوية <span>AI Hub</span></div>
-        <nav>
-            <a href="#home" class="active">الرئيسية</a>
-            <a href="#linker">مساعد الربط الذكي</a>
-            <a href="#resources">القوانين والأسئلة</a>
-        </nav>
+        <div class="nav-controls">
+            <button id="themeToggle" class="theme-btn" title="تبديل الوضع (دارك/لايت)">🍌 الوضع</button>
+            <button id="backHomeBtn" class="home-btn hidden">الرئيسية (اختيار المادة)</button>
+        </div>
     </header>
 
-    <section id="home" class="hero">
-        <h1>إحترف الفيزياء والكيمياء بالذكاء الاصطناعي</h1>
-        <p>فهم عميق، ربط بين فروع المادة، وتدريب حقيقي على أسئلة الامتحانات.</p>
+    <!-- الشاشة الرئيسية: تقسيم الشاشة (Split Screen) كما رسمتها -->
+    <section id="splitScreen" class="split-screen">
+        <div class="side-card phys-side" onclick="selectSubject('phys')">
+            <div class="card-content">
+                <h2>الفيزياء</h2>
+                <p>افهم روابط الفيزياء العميقة، كيرشوف، والحث الكهرومغناطيسي.</p>
+                <span class="select-badge">اختر الفيزياء 👈</span>
+            </div>
+        </div>
+        <div class="divider-line">
+            <span class="vs-circle">VS</span>
+        </div>
+        <div class="side-card chem-side" onclick="selectSubject('chem')">
+            <div class="card-content">
+                <h2>الكيمياء</h2>
+                <p>اربط أبواب الكيمياء بذكاء، العضوية، الكهربية والاتزان.</p>
+                <span class="select-badge">👉 اختر الكيمياء</span>
+            </div>
+        </div>
     </section>
 
-    <!-- الهيكل الرئيسي للموقع: محتوى أساسي + خانة جانبية (Sidebar) -->
-    <div class="main-layout container">
-        
-        <!-- المحتوى الرئيسي (أداة الربط الذكي) -->
-        <main class="content-area">
-            <section id="linker" class="ai-linker-section">
-                <h2>🧠 مساعد الربط الذكي بين فروع المنهج</h2>
-                <p class="section-desc">اختر المادة، ثم حدد فرعين للربط بينهما ومعرفة أفكار الامتحانات.</p>
+    <!-- بيئة العمل الداخلية (Workspace) - تظهر بعد اختيار المادة -->
+    <div id="workspace" class="workspace hidden">
+        <div class="main-layout container">
+            
+            <!-- المحتوى الرئيسي (أداة الربط والمسائل) -->
+            <main class="content-area">
+                <section class="ai-linker-section">
+                    <h2 id="workspaceTitle">مساعد الربط الذكي</h2>
+                    <p class="section-desc">حدد فرعين من المنهج واستخرج نقطة التقاطع وأسئلة الامتحانات الرسمية.</p>
 
-                <div class="linker-card">
-                    <!-- اختيار المادة -->
-                    <div class="input-group">
-                        <label for="subjectSelect">اختر المادة:</label>
-                        <select id="subjectSelect">
-                            <option value="chem">الكيمياء (العضوية، الكهربية، الاتزان...)</option>
-                            <option value="phys">الفيزياء (الكهربية، الحديثة، الحث...)</option>
-                        </select>
+                    <div class="linker-card">
+                        <div class="input-group">
+                            <label for="branch1">الباب أو الفرع الأول:</label>
+                            <select id="branch1"></select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="branch2">الباب أو الفرع الثاني المراد ربطه:</label>
+                            <select id="branch2"></select>
+                        </div>
+
+                        <button id="connectBtn" class="primary-btn">حلل الربط الذكي بالذكاء الاصطناعي 🚀</button>
+
+                        <!-- صندوق النتيجة -->
+                        <div id="aiResult" class="result-box hidden">
+                            <div id="resultContent"></div>
+                        </div>
                     </div>
+                </section>
 
-                    <!-- الفرع الأول -->
-                    <div class="input-group">
-                        <label for="branch1">الفرع أو الباب الأول:</label>
-                        <select id="branch1">
-                            <!-- سيتم تحديث الخيارات تلقائياً بالجافاسكريبت -->
-                        </select>
-                    </div>
+                <!-- قسم المثلثات الذهبية والقوانين -->
+                <section class="formulas-section">
+                    <h3>🔺 المثلثات الذهبية وقوانين كتيب المفاهيم</h3>
+                    <div id="trianglesContainer" class="triangles-grid"></div>
+                </section>
+            </main>
 
-                    <!-- الفرع الثاني -->
-                    <div class="input-group">
-                        <label for="branch2">الفرع أو الباب الثاني المراد ربطه:</label>
-                        <select id="branch2">
-                            <!-- سيتم تحديث الخيارات تلقائياً بالجافاسكريبت -->
-                        </select>
-                    </div>
-
-                    <button id="connectBtn" class="primary-btn">حلل الربط واعرض الأسئلة 🚀</button>
-
-                    <!-- صندوق النتيجة -->
-                    <div id="aiResult" class="result-box hidden">
-                        <h3>تحليل الربط وأسئلة التدريب:</h3>
-                        <div id="resultContent">جاري تحليل العلاقات...</div>
-                    </div>
+            <!-- القائمة الجانبية (Sidebar) -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>📌 اختصارات سريعة</h3>
+                    <ul class="resource-list">
+                        <li><a href="#" onclick="loadQuickLaw()">القوانين الأساسية للمادة</a></li>
+                        <li><a href="#" onclick="loadPastExam()">أرشيف أسئلة الامتحانات</a></li>
+                    </ul>
                 </div>
-            </section>
-        </main>
+            </aside>
 
-        <!-- القائمة الجانبية (Sidebar) للقوانين والأسئلة السابقة -->
-        <aside id="resources" class="sidebar">
-            <div class="sidebar-card">
-                <h3>📌 ركن القوانين السريعة</h3>
-                <ul class="resource-list" id="lawsList">
-                    <li><a href="#" onclick="showLaw('chem')">أهم قوانين الكيمياء (الاتزان والكهربية)</a></li>
-                    <li><a href="#" onclick="showLaw('phys')">أهم قوانين الفيزياء (كيرشوف والحث)</a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-card">
-                <h3>📚 أسئلة امتحانات سابقة</h3>
-                <ul class="resource-list" id="examsList">
-                    <li><a href="#" onclick="showExam('chem')">مسألة متطايرة (امتحان 2023)</a></li>
-                    <li><a href="#" onclick="showExam('phys')">دائرة كيرشوف مع توجيه مغناطيسي (2024)</a></li>
-                </ul>
-            </div>
-        </aside>
-
+        </div>
     </div>
 
     <footer>
