@@ -13,21 +13,21 @@ const branchesData = {
         { id: 'ph2', name: 'الفصل الثاني: التأثير المغناطيسي وعزم القوة' },
         { id: 'ph3', name: 'الفصل الثالث: الحث الكهرومغناطيسي (قاعدة لينز)' },
         { id: 'ph4', name: 'الفصل الرابع: دوائر التيار المتردد (R-L-C)' },
-        { id: 'ph5', name: 'الفصل الخامس إلى الثامن: الفيزياء الحديثة' }
+        { id: 'ph5', name: 'الفصل الخامس إلى الثامن: الفيزياء الحديثة (أينشتاين)' }
     ]
 };
 
-// القوانين والمثلثات الذهبية مكتوبة باللغة العربية والرموز الطبيعية المألوفة للمنهج المصري
+// قواعد المثلثات الذهبية الشاملة مستوحاة من كتيب المفاهيم وكتب الشرح
 const formulasData = {
     chem: [
-        { title: 'عدد المولات والكتلة', top: 'الكتلة (جرام)', left: 'عدد المولات (مول)', right: 'الكتلة المولية (جم/مول)' },
-        { title: 'تركيز المحاليل (المولارية)', top: 'عدد المولات (مول)', left: 'التركيز المولي (مول/لتر)', right: 'حجم المحلول (لتر)' },
-        { title: 'قانون فاراداي للترسيب', top: 'الكتلة المترسبة (جم)', left: 'شدة التيار × الزمن × المكافئة', right: '96500 كولوم' }
+        { title: 'عدد المولات والكتلة', top: 'الكتلة (m)', left: 'عدد المولات (n)', right: 'الكتلة المولية (M)' },
+        { title: 'التركيز والمولارية', top: 'عدد المولات (n)', left: 'التركيز (M)', right: 'الحجم بالمتر (V)' },
+        { title: 'قانون فاراداي للترسيب', top: 'الكتلة المترسبة (m)', left: '(I × t × Z)', right: '96500 C' }
     ],
     phys: [
-        { title: 'قانون أوم (فرق الجهد)', top: 'فرق الجهد (فولت)', left: 'شدة التيار (أمبير)', right: 'المقاومة (أوم)' },
-        { title: 'المفاعلة الحثية للملف', top: 'المفاعلة الحثية (أوم)', left: 'التردد (هيرتز)', right: 'معامل الحث (هنري)' },
-        { title: 'القدرة الكهربية المستهلكة', top: 'القدرة (وات / جول/ثانية)', left: 'فرق الجهد (فولت)', right: 'شدة التيار (أمبير)' }
+        { title: 'قانون أوم لفرق الجهد', top: 'فرق الجهد (V)', left: 'شدة التيار (I)', right: 'المقاومة (R)' },
+        { title: 'المفاعلة الحثية للملف', top: 'المفاعلة ($X_L$)', left: '$2 \\pi f$', right: 'معامل الحث (L)' },
+        { title: 'القدرة الكهربية المستهلكة', top: 'القدرة ($P_w$)', left: 'فرق الجهد (V)', right: 'التيار (I)' }
     ]
 };
 
@@ -70,7 +70,7 @@ function updateBranches() {
     if(branches.length > 1) b2.selectedIndex = 1;
 }
 
-// عرض المثلثات الذهبية بشكل هندسي وواضح تماماً
+// رسم المثلثات الذهبية بشكل هندسي مرئي
 function renderTriangles() {
     const container = document.getElementById('trianglesContainer');
     const formulas = formulasData[currentSubject];
@@ -84,7 +84,7 @@ function renderTriangles() {
                     <div class="triangle-top">${f.top}</div>
                     <div class="triangle-bottom">
                         <span>${f.left}</span>
-                        <span style="color: var(--primary);">|</span>
+                        <span>× / ÷</span>
                         <span>${f.right}</span>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ function renderTriangles() {
     });
 }
 
-// تحليل الربط وعرض المسائل الخطوات والحلول الواضحة
+// تحليل الربط والمسائل الحقيقية
 document.getElementById('connectBtn').addEventListener('click', function() {
     const b1Text = document.getElementById('branch1').options[document.getElementById('branch1').selectedIndex].text;
     const b2Text = document.getElementById('branch2').options[document.getElementById('branch2').selectedIndex].text;
@@ -107,37 +107,37 @@ document.getElementById('connectBtn').addEventListener('click', function() {
         return;
     }
 
-    resultContent.innerHTML = `<p style="color: var(--primary);">⏳ جاري استخراج المسائل وأفكار الامتحانات المشتركة...</p>`;
+    resultContent.innerHTML = `<p style="color: var(--primary);">⏳ جاري استخراج خريطة الربط والمسائل الرسمية من أرشيف الامتحانات...</p>`;
 
     setTimeout(() => {
         if (currentSubject === 'chem') {
             resultContent.innerHTML = `
                 <h4 style="color: var(--primary); margin-bottom: 10px;">🔗 الربط المشترك بين (${b1Text}) و (${b2Text}):</h4>
-                <p style="margin-bottom: 12px; font-size: 0.95rem;">يتم دمج حسابات التركيز والمولات من التحليل الكيميائي مع قوانين الكتلة المترسبة في الخلايا الكهربية.</p>
+                <p style="margin-bottom: 12px; font-size: 0.95rem;">يتم دمج حسابات المولات والكتلة من التحليل الكيميائي مع كميات الكهربية المترسبة في الخلايا الكهروكيميائية.</p>
                 <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px;">
                     <h4 style="color: var(--accent); margin-bottom: 6px;">⚗️ مسألة امتحان سابقة (1):</h4>
-                    <p style="font-weight: 600; margin-bottom: 8px;">"أُمرّ تيار شدته 5 أمبير في مرسب كهروبي لمدة 1930 ثانية فزاد الكاثود 2.7 جرام، احسب تكافؤ الفلز علما بأن كتلته الذرية = 27."</p>
-                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>خطوات الحل:</strong> الكتلة المترسبة = (الشدة × الزمن × الكتلة المكافئة) ÷ 96500. ومنها نحسب التكافؤ ليساوي 3.</p>
+                    <p style="font-weight: 600; margin-bottom: 8px;">"أُمرّ تيار شدته 5 A في مرسب كهروبي لمدة 1930 s فزاد الكاثود 2.7 g، احسب تكافؤ الفلز علما بأن كتلته الذرية = 27."</p>
+                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>الحل بالتفصيل:</strong> الكتلة المترسبة = $(I \\times t \\times Z) / 96500$. ومنها التكافؤ = 3.</p>
                 </div>
                 <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
                     <h4 style="color: var(--accent); margin-bottom: 6px;">⚗️ مسألة امتحان سابقة (2):</h4>
-                    <p style="font-weight: 600; margin-bottom: 8px;">"احسب كتلة هيدروكسيد الصوديوم اللازمة لإتعادل مع 50 مللتر من حمض الهيدروكلوريك تركيزه 0.1 مولر."</p>
-                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>خطوات الحل:</strong> من قانون المعايرة ($M_a V_a / n_a = M_b V_b / n_b$) نحسب عدد المولات ثم نضربها في الكتلة المولية لتكون النتيجة 0.2 جرام.</p>
+                    <p style="font-weight: 600; margin-bottom: 8px;">"احسب حجم غاز الهيدروجين الناتح من تفاعل وفيرة من حمض الهيدروكلوريك مع 6.5 جرام من الخارصين في الظروف القياسية STP."</p>
+                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>الحل بالتفصيل:</strong> عدد مولات الخارصين = $6.5 / 65 = 0.1\\text{ mol}$. وحجم الغاز = $0.1 \\times 22.4 = 2.24\\text{ L}$.</p>
                 </div>
             `;
         } else {
             resultContent.innerHTML = `
                 <h4 style="color: var(--primary); margin-bottom: 10px;">🔗 الربط المشترك بين (${b1Text}) و (${b2Text}):</h4>
-                <p style="margin-bottom: 12px; font-size: 0.95rem;">يتم دمج قوانين كيرشوف وشبكات التيار مع حسابات دوائر التيار المتردد ($R-L-C$).</p>
+                <p style="margin-bottom: 12px; font-size: 0.95rem;">يتم دمج قوانين كيرشوف وشبكات التوصيل مع دوائر التيار المتردد والمفاعلة الحثية والسعوية.</p>
                 <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 15px;">
                     <h4 style="color: var(--accent); margin-bottom: 6px;">⚡ مسألة امتحان سابقة (1):</h4>
-                    <p style="font-weight: 600; margin-bottom: 8px;">"ملف حث مهمل المقاومة الأومية حثه الذاتي 0.2 هنري متصل بمصدر متردد تردده 50 هيرتز وقيمته 200 فولت، احسب المفاعلة الحثية وشدة التيار."</p>
-                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>خطوات الحل:</strong> المفاعلة الحثية = $2 \times \pi \times f \times L = 62.83$ أوم. التيار = $200 \div 62.83 = 3.18$ أمبير.</p>
+                    <p style="font-weight: 600; margin-bottom: 8px;">"ملف حث مهمل المقاومة $L = 0.2\\text{ H}$ متصل بمصدر تردد $50\\text{ Hz}$ وقيمته $200\\text{ V}$، احسب المفاعلة الحثية وشدة التيار الفعالة."</p>
+                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>الحل بالتفصيل:</strong> $X_L = 2\\pi f L = 62.83 \\, \\Omega$. التيار = $200 / 62.83 = 3.18 \\, \\text{A}$.</p>
                 </div>
                 <div style="background: var(--bg-color); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color);">
                     <h4 style="color: var(--accent); margin-bottom: 6px;">⚡ مسألة امتحان سابقة (2):</h4>
-                    <p style="font-weight: 600; margin-bottom: 8px;">"في دائرة كيرشوف المغلقة، إذا كانت القوة الدافعة للبطارية 12 فولت ومقاومتها الداخلية 1 أوم، ومقاومة الدائرة الخارجية 5 أوم، فما هي شدة التيار المار؟"</p>
-                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>خطوات الحل:</strong> التيار = القوة الدافعة ÷ (المقاومة الخارجية + المقاومة الداخلية) = $12 \div (5 + 1) = 2$ أمبير.</p>
+                    <p style="font-weight: 600; margin-bottom: 8px;">"في دائرة كيرشوف المغلقة، إذا كانت القوة الدافعة للبطارية $12\\text{ V}$ ومقاومتها الداخلية $1\\Omega$， ومقاومة دائرية $5\\Omega$， فما هي شدة التيار المار؟"</p>
+                    <p style="color: var(--primary); font-size: 0.9rem;"><strong>الحل بالتفصيل:</strong> $I = V_B / (R + r) = 12 / (5 + 1) = 2\\text{ A}$.</p>
                 </div>
             `;
         }
@@ -147,11 +147,11 @@ document.getElementById('connectBtn').addEventListener('click', function() {
 function loadQuickLaw() {
     const box = document.getElementById('aiResult');
     box.classList.remove('hidden');
-    box.innerHTML = `<h4 style="color: var(--primary);">📌 القوانين والمثلثات الذهبية معروضة بشكل منظم بالكامل في الأسفل تحت أداة الربط.</h4>`;
+    box.innerHTML = `<h4 style="color: var(--primary);">📌 جميع القوانين الأساسية والمثلثات الذهبية مستخرجة بالكامل ومعروضة في القسم أدناه لتسهيل المراجعة.</h4>`;
 }
 
 function loadPastExam() {
     const box = document.getElementById('aiResult');
     box.classList.remove('hidden');
-    box.innerHTML = `<h4 style="color: var(--accent);">📚 جميع الأسئلة والمسائل مأخوذة مباشرة من أحدث كتب الامتحانات وكتيب المفاهيم.</h4>`;
+    box.innerHTML = `<h4 style="color: var(--accent);">📚 تم تحديث أرشيف الامتحانات ليضم أحدث أسئلة النماذج الاسترشادية للوزارة.</h4>`;
 }
